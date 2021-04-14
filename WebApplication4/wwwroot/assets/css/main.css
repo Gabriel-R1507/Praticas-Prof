@@ -1,0 +1,24 @@
+﻿body {
+    background-image: url('../img/background.jpg');
+    margin:0px;
+    padding:0px;
+}
+#headerMenu{
+    display:flex;
+    flex-direction:row;
+    height:50px;
+    background-color:white;
+    color:black;
+}
+#formLogin {
+    width: 33%;
+    margin-left: 33%;
+    background-color: white;
+}
+#pesquisar{
+    float:right
+}
+.imglogo {
+    width: 100px;
+    height: 50px
+}

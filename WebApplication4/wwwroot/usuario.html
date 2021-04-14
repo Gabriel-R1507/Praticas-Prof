@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="assets/js/Main.js"></script>
+    <script src="assets/js/usuario.js"></script>
+    <meta charset="utf-8" />
+    <title>MovieHunters</title>
+</head>
+<body style="background-image:url('./assets/img/background.jpg')">
+
+    <div class="text-center">
+        <form id="formLogin" style="width:33%;margin-left:33%;background-color:white;">
+
+            <center><h1>USUARIOS</h1></center>
+            <br />
+            <div id="divResponse"></div>
+            <br />
+            <br />
+            <label id="lblNome">Nome completo</label>
+            <input type="text" id="txtNome" />
+            <br />
+            <label id="lblUser">Username</label>
+            <input type="text" id="txtUser" />
+            <br />
+            <label id="lblSenha">Senha</label>
+            <input type="password" id="txtSenha" />
+            <br />
+            <label id="lblNascimento">Data de nascimento</label>
+            <input type="date" id="txtNascimento" />
+            <br />
+            <label id="lblEstado">Estado</label>
+            <input type="text" id="txtEstado" />
+            <br />
+            <label id="lblCidade">Cidade</label>
+            <input type="text" id="txtCidade" />
+            <br />
+            <input type="button" onclick="Registrar()" value="Registrar" />
+            <br />
+            Já está cadastrado? <input type="button" onclick="location.href = 'entrar.html'" value="Entrar" />
+        </form>
+    </div>
+</body>
+</html>

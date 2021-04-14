@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="assets/js/Main.js"></script>
+    <script src="assets/js/Cadastro/login.js"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <meta charset="utf-8" />
+    <title>MovieHunters</title>
+
+</head>
+<body>
+    <header id="headerMenu"></header>
+    <div class="text-center">
+
+        <form id="formLogin">
+            <center><h1 class="display-4">Log-in</h1></center>
+            <br />
+            <div id="divResponse"></div>
+            <br />
+            <br />
+            <label for="txtUser">Username</label>
+            <input type="text" id="txtUser" />
+            <br />
+            <label for="txtSenha">Senha</label>
+            <input type="password" id="txtSenha" />
+            <br />
+            <input type="button" onclick="Entrar()" value="Entrar" />
+            <br />
+            Ainda não possui conta? <input type="button" onclick="location.href = 'registrar.html'" value="Abra sua conta" />
+        </form>
+    </div>
+
+</body>
+</html>

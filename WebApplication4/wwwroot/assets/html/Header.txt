@@ -1,0 +1,6 @@
+﻿<div id="imgsla">
+    <img class="imglogo" src="/assets/img/background.jpg">
+</div>
+<div id="pesquisar">
+    <a href="registrar.html">mentola</a>
+</div>
