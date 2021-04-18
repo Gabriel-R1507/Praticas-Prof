@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nmthPHEytCI7OIwWnu5aMuBjUNz8fzAVtMeD9KJwoA7yo2e6xPikdhcpe4qt2EUyw9mlZ08WsEM0WREe7lzvHA==",
+  "dgSpecHash": "cV5zKbjTqJDz3/sI7M2hL3F07Uc9N0dqOzpA1K15aCv8mP1gqMMCndkiKtD58HmHjNizP7K/vyu346oexSMzYg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gdlmg\\source\\repos\\WebApplication3\\MovieService\\MovieService.csproj",
+  "projectFilePath": "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\MovieService\\MovieService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gdlmg\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
     "C:\\Users\\gdlmg\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",

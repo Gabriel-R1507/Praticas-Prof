@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gdlmg\\source\\repos\\WebApplication3\\MovieService\\MovieService.csproj": {}
+    "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\MovieService\\MovieService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gdlmg\\source\\repos\\WebApplication3\\MovieService\\MovieService.csproj": {
+    "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\MovieService\\MovieService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gdlmg\\source\\repos\\WebApplication3\\MovieService\\MovieService.csproj",
+        "projectUniqueName": "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\MovieService\\MovieService.csproj",
         "projectName": "MovieService",
-        "projectPath": "C:\\Users\\gdlmg\\source\\repos\\WebApplication3\\MovieService\\MovieService.csproj",
+        "projectPath": "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\MovieService\\MovieService.csproj",
         "packagesPath": "C:\\Users\\gdlmg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gdlmg\\source\\repos\\WebApplication3\\MovieService\\obj\\",
+        "outputPath": "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\MovieService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

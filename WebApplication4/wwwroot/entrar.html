@@ -4,6 +4,9 @@
     <script src="assets/js/Main.js"></script>
     <script src="assets/js/Cadastro/login.js"></script>
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
 
     <meta charset="utf-8" />
     <title>MovieHunters</title>
@@ -19,11 +22,16 @@
             <div id="divResponse"></div>
             <br />
             <br />
-            <label for="txtUser">Username</label>
-            <input type="text" id="txtUser" />
-            <br />
-            <label for="txtSenha">Senha</label>
-            <input type="password" id="txtSenha" />
+            <div class="form-row pb-3">
+                <div class="cadastro form-group col-lg-6">
+                    <label id="lblUser">Username*</label>
+                    <input type="text" class="form-control" placeholder="Username" id="txtUser">
+                </div>
+                <div class="cadastro form-group col-lg-6">
+                    <label id="lblSenha">Senha*</label>
+                    <input type="text" class="form-control" placeholder="Senha" id="txtSenha">
+                </div>
+            </div>
             <br />
             <input type="button" onclick="Entrar()" value="Entrar" />
             <br />

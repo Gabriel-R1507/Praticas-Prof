@@ -2,5 +2,5 @@
     <img class="imglogo" src="/assets/img/background.jpg">
 </div>
 <div id="pesquisar">
-    <a href="registrar.html">mentola</a>
+    <i class="fa fa-search" aria-hidden="true"></i>
 </div>
