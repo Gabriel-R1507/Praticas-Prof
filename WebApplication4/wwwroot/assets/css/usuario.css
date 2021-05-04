@@ -1,0 +1,46 @@
+﻿body {
+}
+#voltar-home{
+    /*background-color:red;*/
+    padding:10px 20px;
+}
+#voltar-home a{
+    text-decoration: none;
+    color:black;
+    font-size:25px;
+}
+#user-nome {
+    font-size: 35px;
+    text-align: center;
+}
+#user-img {
+    margin-top: 30px;
+}
+.user-rows{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.btn-editar-dados {
+    border: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    min-width: max-content;
+}
+.user-rows a {
+    text-decoration: none;
+    color: black;
+}
+.btn-amizade {
+    background-color:rebeccapurple;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    min-width: max-content;
+}
+.img-profile{
+    border-radius:50%;
+    width:100%;
+}

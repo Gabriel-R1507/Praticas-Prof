@@ -14,28 +14,24 @@
 </head>
 <body>
     <header id="headerMenu"></header>
-    <div class="text-center">
-
-        <form id="formLogin">
+    <div style="display:flex; justify-content:center;">
+        <form id="formLogin" class="col-sm-8 col-lg-6">
             <center><h1 class="display-4">Log-in</h1></center>
             <br />
             <div id="divResponse"></div>
             <br />
-            <br />
             <div class="form-row pb-3">
-                <div class="cadastro form-group col-lg-6">
-                    <label id="lblUser">Username*</label>
+                <div class="cadastro form-group col-12">
                     <input type="text" class="form-control" placeholder="Username" id="txtUser">
                 </div>
-                <div class="cadastro form-group col-lg-6">
-                    <label id="lblSenha">Senha*</label>
+                <div class="cadastro form-group col-12">
                     <input type="text" class="form-control" placeholder="Senha" id="txtSenha">
                 </div>
             </div>
-            <br />
-            <input type="button" onclick="Entrar()" value="Entrar" />
-            <br />
-            Ainda não possui conta? <input type="button" onclick="location.href = 'registrar.html'" value="Abra sua conta" />
+            <div class="form-row pb-3">
+                <input class="btn-cadastro" type="button" onclick="Entrar()" value="Entrar" />
+                <input class="btn-cadastro" type="button" onclick="location.href = 'registrar.html'" value="Abra sua conta" />
+            </div>
         </form>
     </div>
 

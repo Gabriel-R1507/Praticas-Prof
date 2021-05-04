@@ -1,5 +1,6 @@
 ﻿async function Entrar() {
     var dadosLog = {};
+    console.log(document.getElementById("divResponse").innerHTML);
     dadosLog.email_user = document.getElementById("txtUser").value;
     dadosLog.senha_user = document.getElementById("txtSenha").value;
 
@@ -24,10 +25,11 @@
             }
         }
         else {
-            document.getElementById("divResponse").InnerText = "Cadastro não existente";
+            document.getElementById("divResponse").innerHTML = "Cadastro não existente";
         }
     }
     catch (ex) {
         console.log("E: " + ex);
+        document.getElementById("divResponse").innerHTML = "<div class=\"login-error\"> Cadastro não existente</div>";
     }
 }

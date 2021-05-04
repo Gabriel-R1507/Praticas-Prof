@@ -1,0 +1,28 @@
+﻿<div class="division add-button">
+	<!--add-->
+	<a href="additem.html">
+		<i class="fa fa-plus" aria-hidden="true"></i>
+	</a>
+</div>
+<div class="division buscar-button">
+	<!--buscar-->
+	<a href="search.html">
+		<i class="fa fa-search" aria-hidden="true"></i>
+	</a>
+</div>
+<div class="division home-button">
+	<a href="index.html">
+		<i class="fa fa-home" aria-hidden="true"></i>
+	</a>
+</div>
+<div class="division notification-button">
+	<!--notification-->
+	<a href="notification.html">
+		<i class="fa fa-bell" aria-hidden="true"></i>
+	</a>
+</div>
+<div class="division user-button">
+	<a href="usuario.html">
+		<i class='fa fa-user' aria-hidden='true'></i>
+	</a>
+</div>
