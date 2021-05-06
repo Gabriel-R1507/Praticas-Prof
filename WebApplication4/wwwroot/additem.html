@@ -1,15 +1,32 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <script src="assets/js/Main.js"></script>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <meta charset="utf-8" />
-    <title>MovieHunters</title>
-</head>
-<body>
-    <div id="navegation"></div>
-
-</body>
+    <head>
+        <script src="assets/js/Main.js"></script>
+        <script src="assets/js/AddItem.js"></script>
+        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+        <meta charset="utf-8" content="width=device-width, initial-scale=1.0">
+        <title>MovieHunters</title>
+    </head>
+    <body>
+        <div id="navegation"></div>
+        <h1>Cadastrar Novo Item</h1>
+        <form class="pl-3 pr-3">
+            <div class="form-row pb-3">
+                <div class="cadastro form-group col-12">
+                    <select id="Item-type" class="form-control" onchange="AlterForm(this)">
+                        <option value="">Categoria</option>
+                        <option value="Filme">Filme</option>
+                        <option value="Livro">Livro</option>
+                        <option value="Serie">Serie</option>
+                    </select>
+                </div>
+            </div>
+            <div id="form-content"></div>
+            <div class="form-row pb-3">
+                <input class="btn-cadastro" type="button" onclick="CadastrarItem()" value="Cadastrar" />
+            </div>
+        </form>
+    </body>
 </html>

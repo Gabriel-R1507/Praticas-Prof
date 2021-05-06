@@ -1,0 +1,6 @@
+﻿<div id="imglogo">
+    <img src="/assets/img/background.jpg">
+</div>
+<div id="pesquisar">
+    <i class="fa fa-search" aria-hidden="true"></i>
+</div>

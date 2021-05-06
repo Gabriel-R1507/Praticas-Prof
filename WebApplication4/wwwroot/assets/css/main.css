@@ -3,7 +3,16 @@
     padding: 0px;
     font-family: 'Verdana';
 }
-body {
+.btn-cadastro {
+    background-color: #222f39;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+}
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 #headerMenu {
     height: 50px;

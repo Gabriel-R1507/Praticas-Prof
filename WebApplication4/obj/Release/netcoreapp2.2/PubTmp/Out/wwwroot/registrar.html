@@ -2,40 +2,51 @@
 <html>
 <head>
     <script src="assets/js/Main.js"></script>
+    <script src="assets/js/Cadastro/login.js"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
     <meta charset="utf-8" />
-    <title></title>
+    <title>MovieHunters</title>
 </head>
-<body style="background-image:url('./assets/img/background.jpg')">
-
-    <div class="text-center">
-        <form id="formLogin" style="width:33%;margin-left:33%;background-color:white;">
-
-            <center><h1>Registrar</h1></center>
+<body>
+    <header id="headerMenu"></header>
+    <div style="display:flex; justify-content:center;">
+        <form id="formLogin" class="col-sm-8 col-lg-6">
+            <center><h1 class="display-4">Registrar</h1></center>
             <br />
             <div id="divResponse"></div>
             <br />
-            <br />
-            <label id="lblNome">Nome completo</label>
-            <input type="text" id="txtNome" />
-            <br />
-            <label id="lblUser">Username</label>
-            <input type="text" id="txtUser" />
-            <br />
-            <label id="lblSenha">Senha</label>
-            <input type="password" id="txtSenha" />
-            <br />
-            <label id="lblNascimento">Data de nascimento</label>
-            <input type="date" id="txtNascimento" />
-            <br />
-            <label id="lblEstado">Estado</label>
-            <input type="text" id="txtEstado" />
-            <br />
-            <label id="lblCidade">Cidade</label>
-            <input type="text" id="txtCidade" />
-            <br />
-            <input type="button" onclick="Registrar()" value="Registrar" />
-            <br />
-            Já está cadastrado? <input type="button" onclick="location.href = 'entrar.html'" value="Entrar" />
+            <div class="form-row">
+                <div class="cadastro form-group col-12">
+                    <input type="text" class="form-control" placeholder="Nome Completo" id="txtNome" />
+                </div>
+                <div class="cadastro form-group col-12">
+                    <input type="text" class="form-control" placeholder="Username" id="txtUser" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="cadastro form-group col-12">
+                    <input type="password" class="form-control" placeholder="Senha" id="txtSenha" />
+                </div>
+                <div class="cadastro form-group col-12">
+                    <input type="date" class="form-control" placeholder="Nascimento" id="txtNascimento" />
+                </div>
+            </div>
+            <div class="form-row pb-3">
+                <div class="cadastro form-group col-12">
+                    <input type="text" class="form-control" placeholder="Estado" id="txtEstado" />
+                </div>
+                <div class="cadastro form-group col-12">
+                    <input type="text" class="form-control" placeholder="Cidade" id="txtCidade" />
+                </div>
+            </div>
+            <div class="form-row pb-3">
+                <input class="btn-cadastro" type="button" onclick="Registrar()" value="Registrar" />
+                <input class="btn-cadastro" type="button" onclick="location.href = 'entrar.html'" value="Entrar" />
+            </div>
         </form>
     </div>
 </body>

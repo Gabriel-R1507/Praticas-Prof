@@ -2,27 +2,36 @@
 <html>
 <head>
     <script src="assets/js/Main.js"></script>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body style="background-image:url('./assets/img/background.jpg')">
-    <div class="text-center">
+    <script src="assets/js/Cadastro/login.js"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
 
-        <form id="formLogin" style="width:33%;margin-left:33%;background-color:white;">
-            <h1 class="display-4">Log-in</h1>
+    <meta charset="utf-8" />
+    <title>MovieHunters</title>
+
+</head>
+<body>
+    <header id="headerMenu"></header>
+    <div style="display:flex; justify-content:center;">
+        <form id="formLogin" class="col-sm-8 col-lg-6">
+            <center><h1 class="display-4">Log-in</h1></center>
             <br />
             <div id="divResponse"></div>
             <br />
-            <br />
-            <label for="txtUser">Username</label>
-            <input type="text" id="txtUser" />
-            <br />
-            <label for="txtSenha">Senha</label>
-            <input type="password" id="txtSenha" />
-            <br />
-            <input type="button" onclick="Entrar()" value="Entrar" />
-            <br />
-            Ainda não possui conta? <input type="button" onclick="location.href = 'registrar.html'" value="Abra sua conta" />
+            <div class="form-row pb-3">
+                <div class="cadastro form-group col-12">
+                    <input type="text" class="form-control" placeholder="Username" id="txtUser">
+                </div>
+                <div class="cadastro form-group col-12">
+                    <input type="text" class="form-control" placeholder="Senha" id="txtSenha">
+                </div>
+            </div>
+            <div class="form-row pb-3">
+                <input class="btn-cadastro" type="button" onclick="Entrar()" value="Entrar" />
+                <input class="btn-cadastro" type="button" onclick="location.href = 'registrar.html'" value="Abra sua conta" />
+            </div>
         </form>
     </div>
 

@@ -1,18 +1,7 @@
-﻿.form-row{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-}
-.login-error{
+﻿.login-error{
     border: 2px solid red;
     background-color:pink;
     border-radius:3px;
     text-align:center;
     color:red;
-}
-.btn-cadastro {
-    background-color: #222f39;
-    padding: 10px 20px;
-    color:white;
-    border-radius:5px;
 }

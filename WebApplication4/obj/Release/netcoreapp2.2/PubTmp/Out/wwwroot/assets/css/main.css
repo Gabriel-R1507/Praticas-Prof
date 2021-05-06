@@ -1,0 +1,56 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Verdana';
+}
+body {
+}
+#headerMenu {
+    height: 50px;
+    background-color: #222f39;
+    color: black;
+}
+#formLogin {
+    margin-top:30px;
+}
+#imglogo {
+    padding: 0 5px;
+    float: left;
+}
+    #imglogo img {
+        width: 100px;
+        height: 50px
+    }
+#pesquisar {
+    float: right;
+    width: 50px;
+    height: 50px;
+    padding: 0 5px;
+    font-size: 30px;
+    color:white;
+}
+input{
+    border:none;
+}
+#navegation {
+    z-index: 1;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    background-color: #222f39;
+    display: flex;
+    flex-direction: row;
+}
+    #navegation .division{
+        width:20%;
+        text-align:center;
+        display:flex;
+        flex-direction:column;
+        font-size:24px;
+    }
+        #navegation .division a {
+            color: white;
+            padding: 15px 0;
+            height: 100%;
+            text-decoration: none;
+        }
