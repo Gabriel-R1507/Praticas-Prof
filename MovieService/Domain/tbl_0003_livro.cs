@@ -23,6 +23,6 @@ namespace MovieService.Domain
         [StringLength(50)]
         public string pais_livro { get; set; }
 
-        public DateTime ano_livro { get; set; }
+        public int ano_livro { get; set; }
     }
 }

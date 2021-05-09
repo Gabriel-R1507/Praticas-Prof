@@ -20,7 +20,7 @@ namespace MovieService.Domain
 
         public string pais_serie { get; set; }
 
-        public string ano_serie { get; set; }
+        public int ano_serie { get; set; }
 
         public int temporadas_serie { get; set; }
 

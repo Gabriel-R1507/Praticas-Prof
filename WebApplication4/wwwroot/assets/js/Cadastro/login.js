@@ -7,21 +7,22 @@
     var myHeaders = {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            //'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(dadosLog)
     }
 
     try {
-        const rawResponse = await fetch('http://moviehuntersapi.azurewebsites.net/User/GetByLogin', myHeaders);
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetByLogin', myHeaders);
         const content = await rawResponse.json();
-        if (content != null) {
+        if (typeof content == "number") {
 
             console.log("C: " + content);
             if (content != 0) {
                 window.sessionStorage.setItem('User', content);
-                //location.href = "./index.html";
+                location.href = "./index.html";
             }
         }
         else {

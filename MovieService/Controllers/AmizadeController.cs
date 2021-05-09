@@ -51,7 +51,7 @@ namespace MovieService.Controllers
                 {
                     tbl_0005_amizade Amizade = await db.tbl_0005_amizade.Where(i => (i.solicitante_amizade == requestBody.user1 && i.recebidor_amizade == requestBody.user2) || (i.solicitante_amizade == requestBody.user2 && i.recebidor_amizade == requestBody.user1)).FirstOrDefaultAsync();
 
-                    return Ok(Amizade);
+                    return Ok(2);
                 }
             }
             catch (Exception ex)

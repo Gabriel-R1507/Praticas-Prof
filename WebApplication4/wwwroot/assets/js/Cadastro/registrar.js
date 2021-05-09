@@ -1,10 +1,11 @@
-﻿async function Registrar() {
+﻿
+async function Registrar() {
     var dadosClie = {};
     dadosClie.nm_user = document.getElementById("txtNome").value;
     dadosClie.email_user = document.getElementById("txtUser").value;
     dadosClie.senha_user = document.getElementById("txtSenha").value;
     dadosClie.dt_nasc = document.getElementById("txtNascimento").value;
-    dadosClie.estd_user = document.getElementById("txtEstado").value;
+    dadosClie.estd_user = document.getElementById("slcEstado").value;
     dadosClie.cidd_user = document.getElementById("txtCidade").value;
 
     var myHeaders = {
@@ -15,15 +16,15 @@
         },
         body: JSON.stringify(dadosClie)
     }
-    console.log();
+
     try {
-        const rawResponse = await fetch('http://moviehuntersapi.azurewebsites.net/User/InsertClie', myHeaders);
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/User/InsertClie', myHeaders);
         const content = await rawResponse.json();
 
         console.log("C: " + content);
         if (content != null) {
             window.sessionStorage.setItem('User', content);
-            location.href = "./index.html";
+            //location.href = "./index.html";
         }
     }
     catch (ex) {

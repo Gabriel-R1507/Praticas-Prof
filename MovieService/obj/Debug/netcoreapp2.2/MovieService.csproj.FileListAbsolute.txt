@@ -23,3 +23,13 @@ C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\obj\Debug\n
 C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\obj\Debug\netcoreapp2.2\MovieService.RazorAssemblyInfo.cs
 C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\obj\Debug\netcoreapp2.2\MovieService.dll
 C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\obj\Debug\netcoreapp2.2\MovieService.pdb
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\bin\Debug\netcoreapp2.2\appsettings.json
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\bin\Debug\netcoreapp2.2\MovieService.deps.json
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\bin\Debug\netcoreapp2.2\MovieService.runtimeconfig.json
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\bin\Debug\netcoreapp2.2\MovieService.runtimeconfig.dev.json
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\bin\Debug\netcoreapp2.2\MovieService.dll
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\bin\Debug\netcoreapp2.2\MovieService.pdb
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\obj\Debug\netcoreapp2.2\MovieService.RazorTargetAssemblyInfo.cache
+C:\_Gabriel\Mack\5_semestre\Praticas_prof\Praticas-Prof\MovieService\obj\Debug\netcoreapp2.2\MovieService.genruntimeconfig.cache

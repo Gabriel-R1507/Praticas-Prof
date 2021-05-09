@@ -7,14 +7,14 @@
     var myHeaders = {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
+            //'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(dadosLog)
     }
 
     try {
-        const rawResponse = await fetch('http://moviehuntersapi.azurewebsites.net/User/GetByLogin', myHeaders);
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetByLogin', myHeaders);
         const content = await rawResponse.json();
         if (content != null) {
 

@@ -19,7 +19,7 @@ namespace MovieService.Domain
 
         public string pais_filme { get; set; }
            
-       public string ano_filme { get; set; }
+       public int ano_filme { get; set; }
 
     }
 }

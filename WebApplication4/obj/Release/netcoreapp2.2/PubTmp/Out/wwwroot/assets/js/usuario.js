@@ -1,6 +1,5 @@
 ﻿addLoadEvent(async function () {
-    var user = JSON.parse(window.sessionStorage.getItem('User'))
-    document.getElementById("valor-na-sessao").innerHTML = user;
+    var user = JSON.parse(window.sessionStorage.getItem('User'));
     var myHeaders = {
         method: 'POST',
         headers: {
@@ -30,11 +29,39 @@
     }
 });
 
-addLoadEvent(function () {
-    var user = JSON.parse(window.sessionStorage.getItem('User'))
+addLoadEvent(async function () {
+    var temp = window.location.href.split('=');
+    var getAmizade = {};
 
-    var teste = window.location.href.split('=');
-    if (typeof teste[1] != "undefined") {
+    if (typeof temp[1] != "undefined" && temp[1] != JSON.parse(window.sessionStorage.getItem('User'))) {
+
+        getAmizade.user1 = parseInt(temp[1]);
+        getAmizade.user2 = JSON.parse(window.sessionStorage.getItem('User'));
+        var myHeaders = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(getAmizade)
+        }
+        try {
+            const rawResponse = await fetch('http://moviehuntersapi.azurewebsites.net/Amizade/GetAmizade', myHeaders);
+            const content = await rawResponse.json();
+            if (content != null) {
+
+                console.log("C: " + content);
+                //if (content != null) {
+                //}
+            }
+            else {
+                console.log("C: Cadastro não existente");
+            }
+        }
+        catch (ex) {
+            console.log("E: " + ex);
+        }
+
         document.getElementById("action-button").innerHTML = "<div class='user-rows' onClick='SolicitarAmizade()'><div class='btn-amizade col-4 col-md-3 col-lg-2'>Solicitar Amizade <i class='fa fa-user-o' aria-hidden='true'></i></div></div>"
     }
     else {
@@ -42,6 +69,33 @@ addLoadEvent(function () {
     }
 });
 
-function SolicitarAmizade() {
-    alert("amizade");
+async function SolicitarAmizade() {
+    var temp = window.location.href.split('=');
+    var solAmizade = {};
+    solAmizade.user1 = parseInt(temp[1]);
+    solAmizade.user2 = JSON.parse(window.sessionStorage.getItem('User'));
+
+    var myHeaders = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(solAmizade)
+    }
+    try {
+        const rawResponse = await fetch('http://moviehuntersapi.azurewebsites.net/Amizade/CreateAmizade', myHeaders);
+        const content = await rawResponse.json();
+        if (content != null) {
+
+            console.log("C: " + content);
+        }
+        else {
+            console.log("E:: " + content);
+        }
+    }
+    catch (ex) {
+        console.log("E: " + ex);
+        //document.getElementById("divResponse").innerHTML = "<div class=\"login-error\"> Cadastro não existente</div>";
+    }
 }

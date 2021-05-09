@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 namespace MovieService.Controllers
 {
 
-    [AllowAnonymous]
     [Route("[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase

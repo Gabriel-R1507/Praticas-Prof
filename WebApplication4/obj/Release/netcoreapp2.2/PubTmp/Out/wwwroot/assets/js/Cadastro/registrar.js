@@ -15,7 +15,7 @@
         },
         body: JSON.stringify(dadosClie)
     }
-    console.log();
+
     try {
         const rawResponse = await fetch('http://moviehuntersapi.azurewebsites.net/User/InsertClie', myHeaders);
         const content = await rawResponse.json();

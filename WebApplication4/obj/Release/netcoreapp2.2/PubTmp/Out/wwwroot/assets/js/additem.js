@@ -48,7 +48,7 @@
 
 async function CadastrarItem() {
     var dadosCad = {};
-    var link = "";
+    var link = ""
     var tipo = document.getElementById("Item-type").value;
 
     dadosCad.titulo = document.getElementById("txt1").value;
@@ -58,20 +58,19 @@ async function CadastrarItem() {
     if (tipo == "Filme") {
         dadosCad.diretor = document.getElementById("txt2").value;
         dadosCad.elenco = document.getElementById("txt3").value;
-        link = "Filme/InsertFilme";
+        link = "1";
     }
 
     if (tipo == "Livro") {
         dadosCad.autor = document.getElementById("txt2").value;
         dadosCad.editora = document.getElementById("txt3").value;
-        link = "Livro/InsertLivro";
+        link = "1";
     }
 
     if (tipo == "Serie") {
         dadosCad.diretor = document.getElementById("txt2").value;
-        dadosCad.elenco = document.getElementById("txt3").value;
         dadosCad.temporadas = document.getElementById("txt6").value;
-        link = "Serie/InsertSerie";
+        link = "1";
     }
 
     var myHeaders = {
@@ -83,7 +82,7 @@ async function CadastrarItem() {
         body: JSON.stringify(dadosCad)
     }
     try {
-        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/' + link, myHeaders);
+        const rawResponse = await fetch('http://moviehuntersapi.azurewebsites.net/' + link, myHeaders);
         const content = await rawResponse.json();
         if (content != null) {
 
