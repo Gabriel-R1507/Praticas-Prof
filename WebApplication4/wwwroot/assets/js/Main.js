@@ -12,13 +12,13 @@
     }
 }
 
-addLoadEvent(function () {
-    if (window.sessionStorage.getItem('User') == null) {
-        if (!location.href.includes("entrar.html") && !location.href.includes("registrar.html")) {
-            location.href = "entrar.html";
-        }
-    }
-})
+//addLoadEvent(function () {
+//    if (window.sessionStorage.getItem('User') == null) {
+//        if (!location.href.includes("entrar.html") && !location.href.includes("registrar.html")) {
+//            location.href = "entrar.html";
+//        }
+//    }
+//})
 
 //addLoadEvent(function () {
 //    fetch('/assets/html/Header.txt')

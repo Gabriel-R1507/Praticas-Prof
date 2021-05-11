@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieService.Domain
 {
-    public class tbl_0002_filme
+    public class tbl_0002_filme_old
     {
         [Key]
         public int cd_filme { get; set; }

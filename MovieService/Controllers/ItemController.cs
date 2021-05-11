@@ -11,29 +11,11 @@ using System.Threading.Tasks;
 
 namespace MovieService.Controllers
 {
-
+    [AllowAnonymous]
     [Route("[controller]/[action]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class ItemController : ControllerBase
     {
-        [ActionName("GetByLogin")]
-        [HttpPost]
-        public async Task<IActionResult> GetByLogin([FromBody] LoginDTO requestBody)
-        {
-            try
-            {
-                using (SGCContext db = new SGCContext())
-                {
-                    tbl_0001_user Cliente = await db.tbl_0001_user.Where(i => i.email_user == requestBody.email_user && i.senha_user == requestBody.senha_user).FirstOrDefaultAsync();
-
-                    return Ok(Cliente.cd_user);
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
-        }
 
         [ActionName("GetById")]
         [HttpPost]
@@ -43,9 +25,9 @@ namespace MovieService.Controllers
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    tbl_0001_user Cliente = await db.tbl_0001_user.Where(i => i.cd_user == requestBody).FirstOrDefaultAsync();
+                    tbl_0002_item Item = await db.tbl_0002_item.Where(i => i.cd_item == requestBody).FirstOrDefaultAsync();
 
-                    return Ok(Cliente); 
+                    return Ok(Item);
                 }
             }
             catch (Exception ex)
@@ -54,18 +36,26 @@ namespace MovieService.Controllers
             }
         }
 
-        [ActionName("InsertClie")]
+        [ActionName("InsertItem")]
         [HttpPost]
-        public async Task<IActionResult> InsertClie([FromBody] tbl_0001_user requestBody)
+        public async Task<IActionResult> InsertFilme([FromBody] InsertItemDTO requestBody)
         {
             try
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    db.tbl_0001_user.Add(requestBody);
+                    tbl_0002_item Item = new tbl_0002_item();
+                    Item.titulo_item = requestBody.titulo_item;
+                    Item.descricao_item = requestBody.descricao_item;
+                    Item.criador_item = requestBody.criador_item;
+                    Item.tipo_item = requestBody.tipo_item;
+                    Item.aceito_item = false;
+
+                    db.tbl_0002_item.Add(Item);
                     db.SaveChanges();
-                    tbl_0001_user Cliente = await db.tbl_0001_user.Where(i => i.email_user == requestBody.email_user).FirstOrDefaultAsync();
-                    return Ok(Cliente.cd_user);
+
+                    tbl_0002_item Resp = await db.tbl_0002_item.Where(i => i.titulo_item == requestBody.titulo_item && i.tipo_item == requestBody.tipo_item).FirstOrDefaultAsync();
+                    return Ok(Resp.cd_item);
                 }
             }
             catch (Exception ex)
@@ -82,9 +72,9 @@ namespace MovieService.Controllers
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    List<tbl_0001_user> Clientes = await db.tbl_0001_user.Where(i => EF.Functions.Like(i.nm_user, "%" + requestBody + "%")).ToListAsync();
+                    List<tbl_0002_item> Itens = await db.tbl_0002_item.Where(i => EF.Functions.Like(i.titulo_item, "%" + requestBody + "%")/* && i.aceito_item == true*/).ToListAsync();
 
-                    return Ok(Clientes);
+                    return Ok(Itens);
                 }
             }
             catch (Exception ex)

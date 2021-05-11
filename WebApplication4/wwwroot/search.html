@@ -2,7 +2,9 @@
 <html>
 <head>
     <script src="assets/js/Main.js"></script>
+    <script src="assets/js/search.js"></script>
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/search.css">
     <link rel="stylesheet" href="assets/css/font-awesome.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <meta charset="utf-8" content="width=device-width, initial-scale=1.0">
@@ -11,6 +13,23 @@
 <body>
     <div id="navegation"></div>
     <h1>Search</h1>
+    <div class="form-row p-3">
+        <div class="cadastro form-group col-11">
+            <input type="text" class="form-control" placeholder="Pesquise Aqui..." id="txtpesquisa">
+        </div>
+        <div id="search-button" style="" class="col-1" OnClick="Pesquisar()">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+    </div>
 
+    <div class="form-row p-3">
+        <div class="col-12" id="filmesresult">f</div>
+        <hr style=" width: 100vw;">
+        <div class="col-12" id="serieresult">s</div>
+        <hr style=" width: 100vw;">
+        <div class="col-12" id="livroresult">l</div>
+        <hr style=" width: 100vw;">
+        <div class="col-12" id="usuariosresult">u</div>
+    </div>
 </body>
 </html>
