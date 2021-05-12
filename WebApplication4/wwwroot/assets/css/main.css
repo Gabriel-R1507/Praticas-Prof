@@ -3,12 +3,21 @@
     padding: 0px;
     font-family: 'Verdana';
 }
+body{
+    padding-bottom:70px;
+}
 .btn-cadastro {
     background-color: #222f39;
     padding: 10px 20px;
     color: white;
     border-radius: 5px;
 }
+    .cancel{
+        background-color:red;
+    }
+    .save{
+        background-color:green;
+    }
 .form-row {
     display: flex;
     flex-direction: row;

@@ -92,5 +92,34 @@ namespace MovieService.Controllers
                 return StatusCode(500, ex);
             }
         }
+
+        [ActionName("UpdateClie")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateClie([FromBody] tbl_0001_user requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+
+                    tbl_0001_user Cliente = await db.tbl_0001_user.Where(r => r.cd_user == requestBody.cd_user).FirstOrDefaultAsync();
+
+                    Cliente.nm_user = requestBody.nm_user;
+                    Cliente.dt_nasc = requestBody.dt_nasc;
+                    Cliente.estd_user = requestBody.estd_user;
+                    Cliente.cidd_user = requestBody.cidd_user;
+
+                    db.Entry(Cliente).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Ok(Cliente.cd_user);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+        
     }
 }

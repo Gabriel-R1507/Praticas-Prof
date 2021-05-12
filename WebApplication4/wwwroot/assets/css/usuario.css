@@ -33,7 +33,13 @@
     cursor: pointer;
     text-align: center;
     min-width: max-content;
+    text-decoration: none;
+    color: black;
 }
+    .btn-editar-dados:hover {
+        color: black;
+        text-decoration: none
+    }
 .btn-amizade {
     background-color:rebeccapurple;
     padding: 10px;

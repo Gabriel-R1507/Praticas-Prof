@@ -31,7 +31,7 @@
     }
     else {
         user = JSON.parse(window.sessionStorage.getItem('User'));
-        document.getElementById("action-button").innerHTML = "<div class='user-rows' onClick='alert()'><div class='btn-editar-dados col-4 col-md-3 col-lg-2'>Editar dados <i class='fa fa-pencil' aria-hidden='true'></i></div></div>"
+        document.getElementById("action-button").innerHTML = "<div class='user-rows'><a href=\"alteracoes.html\"class='btn-editar-dados col-4 col-md-3 col-lg-2' >Editar dados <i class='fa fa-pencil' aria-hidden='true'></i></a></div>"
     }
     getActualUserInfo(user)
 

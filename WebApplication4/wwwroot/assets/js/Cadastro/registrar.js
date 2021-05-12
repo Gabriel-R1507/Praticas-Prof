@@ -24,7 +24,7 @@ async function Registrar() {
         console.log("C: " + content);
         if (content != null) {
             window.sessionStorage.setItem('User', content);
-            //location.href = "./index.html";
+            location.href = "./index.html";
         }
     }
     catch (ex) {
