@@ -14,8 +14,8 @@ namespace MovieService.Data
         #region
         public DbSet<tbl_0001_user> tbl_0001_user { get; set; }
         public DbSet<tbl_0002_item> tbl_0002_item { get; set; }
-        //public DbSet<tbl_0003_livro> tbl_0003_livro { get; set; }
-        //public DbSet<tbl_0004_serie> tbl_0004_serie { get; set; }
+        public DbSet<tbl_0003_avaliacao> tbl_0003_avaliacao { get; set; }
+        public DbSet<tbl_0004_joinha> tbl_0004_joinha { get; set; }
         public DbSet<tbl_0005_amizade> tbl_0005_amizade { get; set; }
         #endregion
 

@@ -28,5 +28,6 @@ namespace MovieService.Domain
         [StringLength(2)]
         public string estd_user { get; set; }
 
+        public int tipo { get; set; }
     }
 }

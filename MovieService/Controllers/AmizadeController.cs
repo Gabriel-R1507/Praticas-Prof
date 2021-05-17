@@ -28,7 +28,7 @@ namespace MovieService.Controllers
                     Amizade.data_amizade = new DateTime();
                     Amizade.solicitante_amizade = requestBody.user1;
                     Amizade.recebidor_amizade = requestBody.user2;
-                    Amizade.status_amizade = false;
+                    Amizade.status_amizade = 0;
                     db.tbl_0005_amizade.Add(Amizade);
                     db.SaveChanges();
                     tbl_0005_amizade AmizadeRetorno = await db.tbl_0005_amizade.Where(i => i.solicitante_amizade == requestBody.user1 && i.recebidor_amizade == requestBody.user2).FirstOrDefaultAsync();
@@ -73,6 +73,56 @@ namespace MovieService.Controllers
                     List<tbl_0005_amizade> Amizade = await db.tbl_0005_amizade.Where(i => i.recebidor_amizade == requestBody.user2).ToListAsync();
 
                     return Ok(Amizade);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        [ActionName("AceitarAmizade")]
+        [HttpPost]
+        public async Task<IActionResult> AceitarAmizade([FromBody] int requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+
+                    tbl_0005_amizade Amizade = await db.tbl_0005_amizade.Where(r => r.cd_amizade == requestBody).FirstOrDefaultAsync();
+
+                    Amizade.status_amizade = 1;
+
+                    db.Entry(Amizade).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Ok(Amizade.cd_amizade);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        [ActionName("NegarAmizade")]
+        [HttpPost]
+        public async Task<IActionResult> NegarAmizade([FromBody] int requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+
+                    tbl_0005_amizade Amizade = await db.tbl_0005_amizade.Where(r => r.cd_amizade == requestBody).FirstOrDefaultAsync();
+
+                    Amizade.status_amizade = 2;
+
+                    db.Entry(Amizade).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Ok(Amizade.cd_amizade);
                 }
             }
             catch (Exception ex)

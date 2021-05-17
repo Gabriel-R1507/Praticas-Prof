@@ -17,7 +17,7 @@
 </div>
 <div class="division notification-button">
 	<!--notification-->
-	<a href="notification.html">
+	<a href="notificacao.html">
 		<i class="fa fa-bell" aria-hidden="true"></i>
 	</a>
 </div>

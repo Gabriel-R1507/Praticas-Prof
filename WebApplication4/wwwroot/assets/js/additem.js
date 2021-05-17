@@ -56,22 +56,22 @@ async function CadastrarItem() {
     dadosCad.criador_item = JSON.parse(window.sessionStorage.getItem('User'));
 
     descTemp += "País: " + document.getElementById("txt4").value;
-    descTemp += "/nAno: " + document.getElementById("txt5").value;
+    descTemp += "&#13;&#10;Ano: " + document.getElementById("txt5").value;
 
     if (tipo == 1) {
-        descTemp += "\nDiretor: " + document.getElementById("txt2").value;
-        descTemp += "\nElenco: " + document.getElementById("txt3").value;
+        descTemp += "&#13;&#10;Diretor: " + document.getElementById("txt2").value;
+        descTemp += "&#13;&#10;Elenco: " + document.getElementById("txt3").value;
     }
 
     if (tipo == "Livro") {
-        descTemp += "\nAutor: " + document.getElementById("txt2").value;
-        descTemp += "\nEditora: " + document.getElementById("txt3").value;
+        descTemp += "&#13;&#10;Autor: " + document.getElementById("txt2").value;
+        descTemp += "&#13;&#10;Editora: " + document.getElementById("txt3").value;
     }
 
     if (tipo == "Serie") {
-        descTemp += "\nDiretor: " + document.getElementById("txt2").value;
-        descTemp += "\nElenco: " + document.getElementById("txt3").value;
-        descTemp += "\nNº Temporadas: " + document.getElementById("txt6").value;
+        descTemp += "&#13;&#10;Diretor: " + document.getElementById("txt2").value;
+        descTemp += "&#13;&#10;Elenco: " + document.getElementById("txt3").value;
+        descTemp += "&#13;&#10;Nº Temporadas: " + document.getElementById("txt6").value;
     }
 
     dadosCad.descricao_item = descTemp;

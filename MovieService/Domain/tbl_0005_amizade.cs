@@ -17,6 +17,6 @@ namespace MovieService.Domain
 
         public DateTime data_amizade { get; set; }
 
-        public bool status_amizade { get; set; }
+        public int status_amizade { get; set; }
     }
 }

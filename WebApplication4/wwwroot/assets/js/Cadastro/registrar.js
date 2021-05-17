@@ -7,6 +7,7 @@ async function Registrar() {
     dadosClie.dt_nasc = document.getElementById("txtNascimento").value;
     dadosClie.estd_user = document.getElementById("slcEstado").value;
     dadosClie.cidd_user = document.getElementById("txtCidade").value;
+    dadosClie.tipo = 1;
 
     var myHeaders = {
         method: 'POST',

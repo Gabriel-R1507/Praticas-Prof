@@ -1,12 +1,80 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <script src="assets/js/Main.js"></script>
+    <script src="assets/js/item.js"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/item.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <meta charset="utf-8" content="width=device-width, initial-scale=1.0">
+    <title>MovieHunters</title>
 </head>
 <body>
-    <h1>ItemPage</h1>
+    <div id="navegation"></div>
+    <!--<div id="voltar-home">
+        <a href="index.html"><i class="fa fa-angle-left" aria-hidden="true"></i> voltar </a>
+    </div>-->
+    <div class="item-rows" id="user-img">
+        <div class="col-5 col-md-4 col-lg-3">
+            <img class="img-profile" src="assets/img/filmLogo.png" />
+        </div>
+    </div>
+    <div class="item-rows">
+        <div id="item-nome">
+            <p> She </p>
+        </div>
+    </div>
 
-    <div id="itemcontent"></div>
+    <div class="item-rows" style="margin:0px;">
+        <div class="col-10">
+            <textarea id="item-desc" style="width:100%;height:150px;resize:none;" disabled="true">Pais: brasil&#13;&#10;Diretor: meu pai&#13;&#10;Ano: 2019</textarea>
+        </div>
+    </div>
+
+    <div id="avaliacao" class="item-rows" style="margin:0px;">
+        <div class="col-12">
+            <input type="range" id="points" class="col-10" min="0" max="10" step="1" onchange="rangeChange(this)" list="tickmarks">
+            <datalist id="tickmarks">
+                <option value="0"></option>
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+                <option value="9"></option>
+                <option value="10">10</option>
+            </datalist>
+            <textarea id="item-desc" style="width:100%;resize:none;" rows="4" maxlength="1024" placeholder="Descrição (max 1024)"></textarea>
+            <input type="button" value="Salvar" onclick="alert()" />
+        </div>
+    </div>
+
+    <div id="list-aval">
+        <div id="list-aval-titulo">Veja o que outros usuarios acharam</div>
+        <div id="list-aval-content">
+            
+            <hr>
+            <div class="list-aval-unit">
+                <div class="col-1 list-aval-nota">
+                    2
+                </div>
+                <div class="col-9 list-aval-name">Mentola</div>
+                <div class="col-2 list-aval-joinha"><i class="fa fa-thumbs-up" aria-hidden="true"></i>273</i></div>
+                <div class="col-11 list-aval-comentario">a esse filme é mto bom eu amo demais meu deus melhor filme que eu ja vi queria testar essa porra de coment colocar um lorem ipsun</div>
+            </div>
+            <hr>
+            <div class="list-aval-unit">
+                <div class="col-1 list-aval-nota">
+                    10
+                </div>
+                <div class="col-9 list-aval-name">Karina Rodriguez</div>
+                <div class="col-2 list-aval-joinha">34</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

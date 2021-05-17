@@ -1,0 +1,50 @@
+﻿body {
+}
+.list-amigos-img {
+    padding: 0px !important;
+}
+    .img-profile {
+        border-radius: 50%;
+        width: 100%;
+    }
+
+.notif-rows {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.user-nome{
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+    .user-nome p{
+        margin:0px;
+    }
+.notif-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+}
+    .notif-button{
+        width: 35%;
+        margin-left: 10%;
+        height:80%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        cursor:pointer;
+    }
+        .accpet{
+            background-color: green;
+            color: white;
+            font-weight: bold;
+        }
+        .recuse{
+            background-color: red;
+            color: white;
+            font-weight: bold;
+        }

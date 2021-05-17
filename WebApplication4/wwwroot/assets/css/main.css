@@ -19,8 +19,7 @@ body{
         background-color:green;
     }
 .form-row {
-    display: flex;
-    flex-direction: row;
+    margin:0px!important;
     justify-content: space-between;
 }
 #headerMenu {

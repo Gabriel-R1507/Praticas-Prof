@@ -26,7 +26,7 @@
 
 async function Salvar() {
     var dadosClie = {};
-    dadosClie.cd_user = document.getElementById("txtNome").value;
+    dadosClie.cd_user = JSON.parse(window.sessionStorage.getItem('User'));
     dadosClie.nm_user = document.getElementById("txtNome").value;
     dadosClie.dt_nasc = document.getElementById("txtNascimento").value;
     dadosClie.estd_user = document.getElementById("slcEstado").value;
@@ -47,8 +47,10 @@ async function Salvar() {
 
         console.log("C: " + content);
         if (content != null) {
-            //window.sessionStorage.setItem('User', content);
-            //location.href = "./index.html";
+            if (content == JSON.parse(window.sessionStorage.getItem('User'))) {
+
+                location.href = "./user.html";
+            }
         }
     }
     catch (ex) {

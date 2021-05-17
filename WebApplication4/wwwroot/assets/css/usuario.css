@@ -47,10 +47,9 @@
     text-align: center;
     min-width: max-content;
 }
-#list-amigos {
+#list-amigos, #list-aval {
     width: 100%;
     margin-top: 20px;
-    /*background-color: lightblue;*/
     padding-left: 30px;
 }
 
@@ -58,12 +57,10 @@
         font-size: 20px;
         border-bottom:3px solid black;
     }
-    #list-amigos-content {
-        /*background-color: green;*/
+    #list-amigos-content, #list-aval-content {
         margin-top: 20px;
-        /*padding-left: 30px;*/
     }
-        .list-amigos-unit {
+        .list-amigos-unit, .list-aval-unit {
             padding: 10px 0;
             display: flex;
             flex-direction: row;
@@ -72,8 +69,19 @@
                 /*width:10vw;*/
                 padding: 0px!important;
             }
-            .list-amigos-name{
+            .list-amigos-name, .list-aval-name {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                font-size: 25px;
+            }
+
+    #list-aval-titulo {
+        font-size: 20px;
+    }
+            .list-aval-nota{
+                font-size:30px;
                 display:flex;
-                flex-direction:column;
                 justify-content:center;
+                padding: 0px!important;
             }
