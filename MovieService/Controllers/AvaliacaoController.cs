@@ -50,9 +50,9 @@ namespace MovieService.Controllers
             }
         }
 
-        [ActionName("InsertAvaliacao")]
+        [ActionName("CreateAvaliacao")]
         [HttpPost]
-        public async Task<IActionResult> InsertAvaliacao([FromBody] tbl_0003_avaliacao requestBody)
+        public async Task<IActionResult> CreateAvaliacao([FromBody] tbl_0003_avaliacao requestBody)
         {
             try
             {
@@ -78,9 +78,31 @@ namespace MovieService.Controllers
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    List<tbl_0003_avaliacao> Avaliacao = await db.tbl_0003_avaliacao.Where(i => i.item == requestBody).ToListAsync();
+                    List<ItemResponseDTO> Response = new List<ItemResponseDTO>();
+                    ItemResponseDTO Unit = new ItemResponseDTO();
 
-                    return Ok(Avaliacao);
+                    List<tbl_0003_avaliacao> Avaliacoes = await db.tbl_0003_avaliacao.Where(i => i.item == requestBody).ToListAsync();
+
+                    foreach (tbl_0003_avaliacao aval in Avaliacoes)
+                    {
+
+                        List<tbl_0004_joinha> Joinhas = await db.tbl_0004_joinha.Where(i => i.avaliacao == aval.cd_avaliacao).ToListAsync();
+                        tbl_0001_user Usuario = await db.tbl_0001_user.Where(i => i.cd_user == aval.usuario).FirstOrDefaultAsync();
+
+
+                        Unit.aval = aval.cd_avaliacao;
+                        Unit.valor = aval.valor;
+                        Unit.cd_usuario = Usuario.cd_user;
+                        Unit.nm_usuario = Usuario.nm_user;
+                        Unit.comentario = aval.comentario;
+                        Unit.joinhas = Joinhas;
+
+                        Response.Add(Unit);
+                    }
+                    int temp = Response[1].joinhas.Count;
+                    Response.Sort(Response);
+
+                    return Ok(Response);
                 }
             }
             catch (Exception ex)
@@ -97,9 +119,22 @@ namespace MovieService.Controllers
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    List<tbl_0003_avaliacao> Avaliacao = await db.tbl_0003_avaliacao.Where(i => i.usuario == requestBody).ToListAsync();
+                    List<UserResponseDTO> Response = new List<UserResponseDTO>();
+                    List<tbl_0003_avaliacao> Avaliacoes = await db.tbl_0003_avaliacao.Where(i => i.usuario == requestBody).ToListAsync();
+                    foreach (tbl_0003_avaliacao aval in Avaliacoes)
+                    {
+                        tbl_0002_item Item = await db.tbl_0002_item.Where(i => i.cd_item == aval.item).FirstOrDefaultAsync();
+                        List<tbl_0004_joinha> joinhas = await db.tbl_0004_joinha.Where(i => i.avaliacao == aval.cd_avaliacao).ToListAsync();
+                        
+                        UserResponseDTO Unit = new UserResponseDTO();
+                        Unit.valor = aval.valor;
+                        Unit.item = Item.titulo_item;
+                        //Unit.comentario = aval.comentario;
+                        Unit.joinhas = joinhas;
 
-                    return Ok(Avaliacao);
+                        Response.Add(Unit);
+                    }
+                    return Ok(Response);
                 }
             }
             catch (Exception ex)

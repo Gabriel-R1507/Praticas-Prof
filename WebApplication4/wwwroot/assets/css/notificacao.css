@@ -8,7 +8,7 @@
         width: 100%;
     }
 
-.notif-rows {
+.notif-row {
     width: 100%;
     margin-top: 20px;
     display: flex;
@@ -24,6 +24,7 @@
     .user-nome p{
         margin:0px;
     }
+
 .notif-buttons {
     display: flex;
     flex-wrap: nowrap;

@@ -68,9 +68,33 @@ namespace MovieService.Controllers
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    tbl_0005_amizade[] amigs;
 
                     List<tbl_0005_amizade> Amizade = await db.tbl_0005_amizade.Where(i => i.recebidor_amizade == requestBody.user2).ToListAsync();
+
+                    return Ok(Amizade);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        [ActionName("GetAmizadeUserPage")]
+        [HttpPost]
+        public async Task<IActionResult> GetAmizadeUserPage([FromBody] int requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+
+                    List<tbl_0005_amizade> Amizade = new List<tbl_0005_amizade>();
+                    List<tbl_0005_amizade> Temp1 = await db.tbl_0005_amizade.Where(i => i.recebidor_amizade == requestBody && i.status_amizade == 1).ToListAsync();
+                    List<tbl_0005_amizade> Temp2 = await db.tbl_0005_amizade.Where(i => i.solicitante_amizade == requestBody && i.status_amizade == 1 ).ToListAsync();
+
+                    Amizade.AddRange( Temp1.Count > 0 ? Temp1 : null);
+                    Amizade.AddRange( Temp2.Count > 0 ? Temp2 : null);
 
                     return Ok(Amizade);
                 }
