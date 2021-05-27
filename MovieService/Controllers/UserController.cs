@@ -120,6 +120,48 @@ namespace MovieService.Controllers
                 return StatusCode(500, ex);
             }
         }
-        
+
+        [ActionName("GetComum")]
+        [HttpPost]
+        public async Task<IActionResult> GetComum([FromBody] AmizadeDto requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+                    List<int> comum = new List<int>();
+                    List<tbl_0001_user> Response = new List<tbl_0001_user>();
+
+                    List<int> Amizades1 = await db.tbl_0005_amizade
+                                                .Where(i => i.solicitante_amizade == requestBody.user1)
+                                                .Select(x => x.recebidor_amizade)
+                                                .Union(db.tbl_0005_amizade
+                                                .Where(i => i.recebidor_amizade == requestBody.user1)
+                                                .Select(x => x.solicitante_amizade)).ToListAsync();
+
+                    List<int> Amizades2 = await db.tbl_0005_amizade
+                                                .Where(i => i.solicitante_amizade == requestBody.user2)
+                                                .Select(x => x.recebidor_amizade)
+                                                .Union(db.tbl_0005_amizade
+                                                .Where(i => i.recebidor_amizade == requestBody.user2)
+                                                .Select(x => x.solicitante_amizade)).ToListAsync();
+
+                    foreach (int amiz in Amizades1)
+                    {
+                        if (Amizades2.Contains(amiz))
+                        {
+                            tbl_0001_user unit = await db.tbl_0001_user.Where(i => i.cd_user == amiz).FirstOrDefaultAsync();
+                            Response.Add(unit);
+                        }
+                    }
+
+                    return Ok(Response.Count);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
     }
 }

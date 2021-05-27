@@ -1,2 +1,23 @@
 ﻿body {
 }
+
+.item-rows {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width:100%;
+}
+
+.img-profile {
+    width: 100%;
+}
+
+#list-aprov-content {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+.list-aprov-unit {
+    min-width: 45vw;
+    margin:0px 10px;
+}

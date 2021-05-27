@@ -1,5 +1,7 @@
 ﻿var aval_exemple = "<div class=\"list-aval-unit\"><div class=\"col-1 list-aval-nota\">NotaDaAval</div><div class=\"col-9 list-aval-name\">NomeDoFilme</div><div class=\"col-2 list-aval-joinha\">JoinhasDaAval</div></div>";
 
+
+//checa metodo get para alterar botao e chca se ja existe amizade
 addLoadEvent(async function () {
     let temp = window.location.href.split('=');
     let getAmizade = {};
@@ -30,6 +32,7 @@ addLoadEvent(async function () {
         catch (ex) {
             console.log("E: " + ex);
         }
+        getAmigosEmComum(temp[1], JSON.parse(window.sessionStorage.getItem('User')));
     }
     else {
         user = JSON.parse(window.sessionStorage.getItem('User'));
@@ -177,6 +180,28 @@ async function getAvaliacoes(user) {
         else {
             document.getElementById("action-button").innerHTML = "<div class='user-rows' onClick='SolicitarAmizade()'><div class='btn-amizade col-4 col-md-3 col-lg-2'>Solicitar Amizade <i class='fa fa-user' aria-hidden='true'></i></div></div>"
         }
+    }
+    catch (ex) {
+        console.log("E: " + ex);
+    }
+}
+
+async function getAmigosEmComum() {
+    let HeadersAmiz = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(getAmizade)
+    }
+    try {
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Amizade/GetAmizade', HeadersAmiz);
+        const content = await rawResponse.json();
+        if (content != null) {
+            document.getElementById("list-amigos-titulo").innerHTML += "( " + content + " Em comum )";
+        }
+        getAmigosEmComum(temp[1], JSON.parse(window.sessionStorage.getItem('User')));
     }
     catch (ex) {
         console.log("E: " + ex);

@@ -72,7 +72,7 @@ namespace MovieService.Controllers
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    List<tbl_0002_item> Itens = await db.tbl_0002_item.Where(i => EF.Functions.Like(i.titulo_item, "%" + requestBody + "%")/* && i.aceito_item == true*/).ToListAsync();
+                    List<tbl_0002_item> Itens = await db.tbl_0002_item.Where(i => EF.Functions.Like(i.titulo_item, "%" + requestBody + "%") && i.aceito_item == true).ToListAsync();
 
                     return Ok(Itens);
                 }
