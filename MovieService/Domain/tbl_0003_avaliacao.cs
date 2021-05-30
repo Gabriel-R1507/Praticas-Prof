@@ -8,6 +8,7 @@ namespace MovieService.Domain
 {
     public class tbl_0003_avaliacao
     {
+        [Key]
         public int cd_avaliacao { get; set; }
 
         public int valor { get; set; }

@@ -1,0 +1,115 @@
+﻿#voltar-home {
+    padding: 10px 20px;
+}
+
+    #voltar-home a {
+        text-decoration: none;
+        color: black;
+        font-size: 25px;
+    }
+
+.img-profile {
+    width: 100%;
+}
+
+#item-nome {
+    font-size: 30px;
+    text-align: center;
+}
+
+#item-img {
+    margin-top: 30px;
+}
+
+.item-rows {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/*    .item-rows a {
+        text-decoration: none;
+        color: black;
+    }*/
+
+.btn-editar-dados {
+    border: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    min-width: max-content;
+    text-decoration: none;
+    color: black;
+}
+
+    .btn-editar-dados:hover {
+        color: black;
+        text-decoration: none
+    }
+
+.btn-amizade {
+    background-color: rebeccapurple;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    min-width: max-content;
+}
+
+#list-aval {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0px 30px;
+}
+
+#list-aval-titulo {
+    font-size: 15px;
+}
+
+#list-aval-content {
+    margin-top: 20px;
+}
+
+.list-aval-unit {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+
+.list-aval-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size:25px;
+}
+
+.list-aval-nota {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 0px !important;
+}
+
+.list-aval-comentario{
+    font-size:15px;
+}
+
+.list-aval-joinha {
+    vertical-align: central;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+    .list-aval-joinha i {
+        font-size: 20px;
+    }
+
+    .list-aval-joinha p {
+        margin:0px;
+    }
+    
+    #points{
+        background-color:red;
+    }

@@ -41,38 +41,40 @@
                     "</div>" +
                 "</div> ";
             break;
-        default: alert();
+        default: ;
     }
 }
 
 
 async function CadastrarItem() {
     var dadosCad = {};
-    var link = "";
+    var descTemp = "";
     var tipo = document.getElementById("Item-type").value;
 
-    dadosCad.titulo = document.getElementById("txt1").value;
-    dadosCad.pais = document.getElementById("txt4").value;
-    dadosCad.ano = document.getElementById("txt5").value;
+    dadosCad.titulo_item = document.getElementById("txt1").value;
+    dadosCad.tipo_item = tipo;
+    dadosCad.criador_item = JSON.parse(window.sessionStorage.getItem('User'));
 
-    if (tipo == "Filme") {
-        dadosCad.diretor = document.getElementById("txt2").value;
-        dadosCad.elenco = document.getElementById("txt3").value;
-        link = "Filme/InsertFilme";
+    descTemp += "País: " + document.getElementById("txt4").value;
+    descTemp += "<br>Ano: " + document.getElementById("txt5").value;
+
+    if (tipo == 1) {
+        descTemp += "<br>Diretor: " + document.getElementById("txt2").value;
+        descTemp += "<br>Elenco: " + document.getElementById("txt3").value;
     }
 
-    if (tipo == "Livro") {
-        dadosCad.autor = document.getElementById("txt2").value;
-        dadosCad.editora = document.getElementById("txt3").value;
-        link = "Livro/InsertLivro";
+    if (tipo == 2) {
+        descTemp += "<br>Autor: " + document.getElementById("txt2").value;
+        descTemp += "<br>Editora: " + document.getElementById("txt3").value;
     }
 
-    if (tipo == "Serie") {
-        dadosCad.diretor = document.getElementById("txt2").value;
-        dadosCad.elenco = document.getElementById("txt3").value;
-        dadosCad.temporadas = document.getElementById("txt6").value;
-        link = "Serie/InsertSerie";
+    if (tipo == 3) {
+        descTemp += "<br>Diretor: " + document.getElementById("txt2").value;
+        descTemp += "<br>Elenco: " + document.getElementById("txt3").value;
+        descTemp += "<br>Nº Temporadas: " + document.getElementById("txt6").value;
     }
+
+    dadosCad.descricao_item = descTemp;
 
     var myHeaders = {
         method: 'POST',
@@ -83,22 +85,20 @@ async function CadastrarItem() {
         body: JSON.stringify(dadosCad)
     }
     try {
-        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/' + link, myHeaders);
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Item/InsertItem', myHeaders);
         const content = await rawResponse.json();
         if (content != null) {
-
             console.log("C: " + content);
-            if (content != 0) {
-                window.sessionStorage.setItem('User', content);
-                //location.href = "./index.html";
+            if (typeof content == "number") {
+                document.getElementById("divResponse").innerHTML = "Item cadastrado com sucesso! (aguardando aprovação de um administrador)";
             }
         }
         else {
-            document.getElementById("divResponse").innerHTML = "Cadastro não existente";
+            document.getElementById("divResponse").innerHTML = "Erro ao cadastrar Item";
         }
     }
     catch (ex) {
         console.log("E: " + ex);
-        document.getElementById("divResponse").innerHTML = "<div class=\"login-error\"> Cadastro não existente</div>";
+        document.getElementById("divResponse").innerHTML = "Erro ao cadastrar Item";
     }
 }

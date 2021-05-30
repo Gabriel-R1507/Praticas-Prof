@@ -25,7 +25,7 @@ namespace MovieService.Controllers
                 using (SGCContext db = new SGCContext())
                 {
                     tbl_0005_amizade Amizade = new tbl_0005_amizade();
-                    Amizade.data_amizade = new DateTime();
+                    Amizade.data_amizade = DateTime.Now;
                     Amizade.solicitante_amizade = requestBody.user1;
                     Amizade.recebidor_amizade = requestBody.user2;
                     Amizade.status_amizade = 0;
@@ -50,8 +50,11 @@ namespace MovieService.Controllers
                 using (SGCContext db = new SGCContext())
                 {
                     tbl_0005_amizade Amizade = await db.tbl_0005_amizade.Where(i => (i.solicitante_amizade == requestBody.user1 && i.recebidor_amizade == requestBody.user2) || (i.solicitante_amizade == requestBody.user2 && i.recebidor_amizade == requestBody.user1)).FirstOrDefaultAsync();
-
-                    return Ok(2);
+                    if (Amizade != null)
+                    {
+                        return Ok(Amizade);
+                    }
+                    return Ok(new object());
                 }
             }
             catch (Exception ex)
@@ -62,16 +65,24 @@ namespace MovieService.Controllers
 
         [ActionName("GetAmizadeByRecebidor")]
         [HttpPost]
-        public async Task<IActionResult> GetAmizadeByRecebidor([FromBody] AmizadeDto requestBody)
+        public async Task<IActionResult> GetAmizadeByRecebidor([FromBody] int requestBody)
         {
             try
             {
                 using (SGCContext db = new SGCContext())
                 {
-
-                    List<tbl_0005_amizade> Amizade = await db.tbl_0005_amizade.Where(i => i.recebidor_amizade == requestBody.user2).ToListAsync();
-
-                    return Ok(Amizade);
+                    List<ResponseAmizadeDto> response = new List<ResponseAmizadeDto>();
+                    List<tbl_0005_amizade> Amizades = await db.tbl_0005_amizade.Where(i => i.recebidor_amizade == requestBody && i.status_amizade == 0).ToListAsync();
+                    foreach (tbl_0005_amizade a in Amizades)
+                    {
+                        tbl_0001_user usuario = await db.tbl_0001_user.Where(i => i.cd_user == a.solicitante_amizade).FirstOrDefaultAsync();
+                        ResponseAmizadeDto unit = new ResponseAmizadeDto();
+                        unit.cd_amizade = a.cd_amizade;
+                        unit.nm_usuario = usuario.nm_user;
+                        response.Add(unit);
+                    }
+                    
+                    return Ok(response);
                 }
             }
             catch (Exception ex)
@@ -88,15 +99,27 @@ namespace MovieService.Controllers
             {
                 using (SGCContext db = new SGCContext())
                 {
+                    List<ResponseUserPageDTO> response = new List<ResponseUserPageDTO>();
 
-                    List<tbl_0005_amizade> Amizade = new List<tbl_0005_amizade>();
-                    List<tbl_0005_amizade> Temp1 = await db.tbl_0005_amizade.Where(i => i.recebidor_amizade == requestBody && i.status_amizade == 1).ToListAsync();
-                    List<tbl_0005_amizade> Temp2 = await db.tbl_0005_amizade.Where(i => i.solicitante_amizade == requestBody && i.status_amizade == 1 ).ToListAsync();
+                    List<tbl_0005_amizade> AmizadeR  = await db.tbl_0005_amizade.Where(i => i.recebidor_amizade == requestBody && i.status_amizade == 1).ToListAsync();
+                    List<tbl_0005_amizade> AmizadeS  = await db.tbl_0005_amizade.Where(i => i.solicitante_amizade == requestBody && i.status_amizade == 1).ToListAsync();
 
-                    Amizade.AddRange( Temp1.Count > 0 ? Temp1 : null);
-                    Amizade.AddRange( Temp2.Count > 0 ? Temp2 : null);
-
-                    return Ok(Amizade);
+                    foreach (tbl_0005_amizade a in AmizadeR)
+                    {
+                        ResponseUserPageDTO runit = new ResponseUserPageDTO();
+                        runit.cd_amigo = a.solicitante_amizade;
+                        runit.nm_amigo = await db.tbl_0001_user.Where(i => i.cd_user == runit.cd_amigo).Select(i=> i.nm_user).FirstOrDefaultAsync();
+                        response.Add(runit);
+                    }
+                    
+                    foreach (tbl_0005_amizade a in AmizadeS)
+                    {
+                        ResponseUserPageDTO runit = new ResponseUserPageDTO();
+                        runit.cd_amigo = a.recebidor_amizade;
+                        runit.nm_amigo = await db.tbl_0001_user.Where(i => i.cd_user == runit.cd_amigo).Select(i => i.nm_user).FirstOrDefaultAsync();
+                        response.Add(runit);
+                    }
+                    return Ok(response);
                 }
             }
             catch (Exception ex)
@@ -147,6 +170,31 @@ namespace MovieService.Controllers
                     db.SaveChanges();
 
                     return Ok(Amizade.cd_amizade);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        [ActionName("GetMedAmigos")]
+        [HttpPost]
+        public async Task<IActionResult> GetMedAmigos()
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+                    List<tbl_0001_user> Usuarios = await db.tbl_0001_user.Where(i => i.tipo == 1).ToListAsync();
+
+                    List<tbl_0005_amizade> Amizades = await db.tbl_0005_amizade.Where(i => i.status_amizade == 1).ToListAsync();
+
+                    int qtdamiz = Amizades.Count() * 2;
+
+                    float media = qtdamiz / Usuarios.Count();
+
+                    return Ok(media);
                 }
             }
             catch (Exception ex)

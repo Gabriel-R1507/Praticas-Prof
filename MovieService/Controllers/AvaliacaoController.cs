@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieService.Data;
 using MovieService.Domain;
@@ -10,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace MovieService.Controllers
 {
+    [AllowAnonymous]
+    [Route("[controller]/[action]")]
+    [ApiController]
     public class AvaliacaoController : ControllerBase
     {
         [ActionName("GetByItemPage")]
@@ -99,8 +103,6 @@ namespace MovieService.Controllers
 
                         Response.Add(Unit);
                     }
-                    int temp = Response[1].joinhas.Count;
-                    Response.Sort(Response);
 
                     return Ok(Response);
                 }
@@ -128,6 +130,7 @@ namespace MovieService.Controllers
                         
                         UserResponseDTO Unit = new UserResponseDTO();
                         Unit.valor = aval.valor;
+                        Unit.cd_aval = aval.cd_avaliacao;
                         Unit.item = Item.titulo_item;
                         //Unit.comentario = aval.comentario;
                         Unit.joinhas = joinhas;

@@ -20,6 +20,6 @@ namespace MovieService.Domain
 
         public int tipo_item { get; set; }
 
-        public bool aceito_item { get; set; }
+        public int aceito_item { get; set; }
     }
 }

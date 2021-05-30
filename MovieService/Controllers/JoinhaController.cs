@@ -43,13 +43,15 @@ namespace MovieService.Controllers
 
         [ActionName("DeleteJoinha")]
         [HttpPost]
-        public async Task<IActionResult> DeleteJoinha([FromBody] tbl_0004_joinha requestBody)
+        public async Task<IActionResult> DeleteJoinha([FromBody] JoinhaDTO requestBody)
         {
             try
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    db.Entry(requestBody).State = EntityState.Deleted;
+                    tbl_0004_joinha Avaliacao = await db.tbl_0004_joinha.Where(i => i.usuario == requestBody.usuario && i.avaliacao == requestBody.avaliacao ).FirstOrDefaultAsync();
+
+                    db.Entry(Avaliacao).State = EntityState.Deleted;
                     db.SaveChanges();
                     return Ok(0);
                 }
@@ -85,6 +87,29 @@ namespace MovieService.Controllers
             }
         }
 
-        
+        [ActionName("TotalPerUser")]
+        [HttpPost]
+        public async Task<IActionResult> TotalPerUser([FromBody] int requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+                    int total = 0;
+                    List<tbl_0003_avaliacao> Avaliacoes = await db.tbl_0003_avaliacao.Where(i => i.usuario == requestBody).ToListAsync();
+                    foreach (tbl_0003_avaliacao aval in Avaliacoes)
+                    {
+                        List<tbl_0004_joinha> JoinhaRetorno = await db.tbl_0004_joinha.Where(i => i.avaliacao == aval.cd_avaliacao).ToListAsync();
+                        total += JoinhaRetorno.Count;
+                    }
+
+                    return Ok(total);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
     }
 }

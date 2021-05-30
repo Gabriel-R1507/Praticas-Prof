@@ -49,13 +49,33 @@ namespace MovieService.Controllers
                     Item.descricao_item = requestBody.descricao_item;
                     Item.criador_item = requestBody.criador_item;
                     Item.tipo_item = requestBody.tipo_item;
-                    Item.aceito_item = false;
+                    Item.aceito_item = 0;
 
                     db.tbl_0002_item.Add(Item);
                     db.SaveChanges();
 
                     tbl_0002_item Resp = await db.tbl_0002_item.Where(i => i.titulo_item == requestBody.titulo_item && i.tipo_item == requestBody.tipo_item).FirstOrDefaultAsync();
                     return Ok(Resp.cd_item);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        
+        [ActionName("GetItensToAprove")]
+        [HttpPost]
+        public async Task<IActionResult> GetItensToAprove()
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+                    List<tbl_0002_item> Itens = await db.tbl_0002_item.Where(i => i.aceito_item == 0).ToListAsync();
+
+                    return Ok(Itens);
                 }
             }
             catch (Exception ex)
@@ -72,9 +92,59 @@ namespace MovieService.Controllers
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    List<tbl_0002_item> Itens = await db.tbl_0002_item.Where(i => EF.Functions.Like(i.titulo_item, "%" + requestBody + "%") && i.aceito_item == true).ToListAsync();
+                    List<tbl_0002_item> Itens = await db.tbl_0002_item.Where(i => EF.Functions.Like(i.titulo_item, "%" + requestBody + "%") && i.aceito_item == 1).ToListAsync();
 
                     return Ok(Itens);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        [ActionName("Aprovar")]
+        [HttpPost]
+        public async Task<IActionResult> Aprovar([FromBody] int requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+
+                    tbl_0002_item Item = await db.tbl_0002_item.Where(r => r.cd_item == requestBody).FirstOrDefaultAsync();
+
+                    Item.aceito_item = 1;
+
+                    db.Entry(Item).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Ok(Item.cd_item);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        [ActionName("Negar")]
+        [HttpPost]
+        public async Task<IActionResult> Negar([FromBody] int requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+
+                    tbl_0002_item Item = await db.tbl_0002_item.Where(r => r.cd_item == requestBody).FirstOrDefaultAsync();
+
+                    Item.aceito_item = 1;
+
+                    db.Entry(Item).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Ok(Item.cd_item);
                 }
             }
             catch (Exception ex)

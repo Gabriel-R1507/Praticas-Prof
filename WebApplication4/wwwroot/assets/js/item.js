@@ -10,12 +10,12 @@
 
 //nome e descrição do filme
 addLoadEvent(async function () {
-    var temp = window.location.href.split('=');
-    var item;
+    let temp = window.location.href.split('=');
+    let item;
     if (typeof temp[1] != "undefined") {
         item = temp[1];
 
-        var myHeaders = {
+        let myHeaders = {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -27,8 +27,12 @@ addLoadEvent(async function () {
             const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Item/GetById', myHeaders);
             const content = await rawResponse.json();
             if (content != null) {
-                document.getElementById("item-nome").innerHTML = "<p>" + content.nm_item + "</p>";
-                document.getElementById("item-desc").innerHTML = content.desc_item;
+                document.getElementById("item-nome").innerHTML = "<p>" + content.titulo_item + "</p>";
+                desc = content.descricao_item.split("<br>");
+                for (i = 0; i < desc.length; i++) {
+                    document.getElementById("item-desc").value += desc[i];
+                    document.getElementById("item-desc").value += "\n";
+                }
             }
         }
         catch (ex) {
@@ -59,26 +63,25 @@ addLoadEvent(async function () {
             const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Avaliacao/GetByItem', myHeaders);
             const content = await rawResponse.json();
             if (content != null) {
-
                 content.sort((a, b) => {
                     if (a.joinhas.length > b.joinhas.length) { return -1; }
                     if (a.joinhas.length < b.joinhas.length) { return 1; }
                     return 0;
                 });
-
-                for (var i = 0; i < content.length; i++) {
+                for (let i = 0; i < content.length; i++) {
                     itemavaliations = itemavaliationsPure;
 
-                    itemavaliations += itemavaliations.replace("notadaavaliaaco", content[i].nota);
-                    itemavaliations += itemavaliations.replace("codigodousuario", content[i].cd_user);
-                    itemavaliations += itemavaliations.replace("nomedousuario", content[i].nm_user);
-                    itemavaliations += itemavaliations.replace("CdDaAvaliacao", content[i].aval);
-                    itemavaliations += itemavaliations.replace("quantidadedelikes", content[i].joinhas.lenght);
-                    itemavaliations += itemavaliations.replace("comentariodaavaliacao", content[i].comentario);
+                    itemavaliations = itemavaliations.replace("notadaavaliaaco", content[i].valor);
+                    itemavaliations = itemavaliations.replace("codigodousuario", content[i].cd_usuario);
+                    itemavaliations = itemavaliations.replace("nomedousuario", content[i].nm_usuario);
+                    itemavaliations = itemavaliations.replace("CdDaAvaliacao", content[i].aval);
+                    itemavaliations = itemavaliations.replace("quantidadedelikes", content[i].joinhas.length);
+                    itemavaliations = itemavaliations.replace("comentariodaavaliacao", content[i].comentario);
 
-                    for (let a = 0; a < content[i].joinhas.lenght; a++) {
+                    for (let a = 0; a < content[i].joinhas.length; a++) {
                         if (content[i].joinhas[a].usuario == window.sessionStorage.getItem('User')) {
-                            itemavaliations += itemavaliations.replace("DarLike", "RemoverLike");
+                            itemavaliations = itemavaliations.replace("DarLike", "RemoverLike");
+                            itemavaliations = itemavaliations.replace("fa-thumbs-o-up", "fa-thumbs-up");
                         }
                     }
 
@@ -95,12 +98,28 @@ addLoadEvent(async function () {
 
 //checa se o usuario atual ja fez avaliacao
 addLoadEvent(async function () {
-    var already = false;
-    var div = document.getElementById("avaliacao");
+    let temp = window.location.href.split('=');
+    let ItemPage = {}
+    ItemPage.usuario = JSON.parse(window.sessionStorage.getItem('User'));
+    ItemPage.item = temp[1];
 
-    //fetch a tabela availacao
-    if (already) {
-        div.innerHTML = "ja avaliou";
+    let myHeaders = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(ItemPage)
+    }
+    try {
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Avaliacao/GetByItemPage', myHeaders);
+        const content = await rawResponse.json();
+        if (content.cd_avaliacao != undefined) {
+            document.getElementById("avaliacao").innerHTML = "ja avaliou";
+        }
+    }
+    catch (ex) {
+        console.log("E: " + ex);
     }
 });
 
@@ -110,7 +129,7 @@ async function Avaliar() {
     aval.item = temp[1];
     aval.valor = document.getElementById("points").value;
     aval.usuario = window.sessionStorage.getItem('User');
-    aval.comentario = document.getElementById("item-desc").value;
+    aval.comentario = document.getElementById("item-comment").value;
 
     let myHeaders = {
         method: 'POST',
@@ -124,7 +143,7 @@ async function Avaliar() {
         const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Avaliacao/CreateAvaliacao', myHeaders);
         const content = await rawResponse.json();
         if (content != null) {
-            alert();
+            location.href = location.href;
         }
     }
     catch (ex) {
@@ -132,10 +151,52 @@ async function Avaliar() {
     }
 }
 
-async function DarLike() {
+async function DarLike(aval) {
+    joinhaDTO = {}
+    joinhaDTO.avaliacao = aval;
+    joinhaDTO.usuario = JSON.parse(window.sessionStorage.getItem('User'));
 
+    let myHeaders = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(joinhaDTO)
+    }
+    try {
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Joinha/CreateJoinha', myHeaders);
+        const content = await rawResponse.json();
+        if (content != null) {
+            location.href = location.href;
+        }
+    }
+    catch (ex) {
+        console.log("E: " + ex);
+    }
 }
 
-async function RemoverLike() {
+async function RemoverLike(aval) {
+    joinhaDTO = {}
+    joinhaDTO.avaliacao = aval;
+    joinhaDTO.usuario = JSON.parse(window.sessionStorage.getItem('User'));
 
+    let myHeaders = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(joinhaDTO)
+    }
+    try {
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Joinha/DeleteJoinha', myHeaders);
+        const content = await rawResponse.json();
+        if (content != null) {
+            location.href = location.href;
+        }
+    }
+    catch (ex) {
+        console.log("E: " + ex);
+    }
 }

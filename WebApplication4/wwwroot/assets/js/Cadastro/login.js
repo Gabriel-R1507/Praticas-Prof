@@ -4,7 +4,7 @@
     dadosLog.email_user = document.getElementById("txtUser").value;
     dadosLog.senha_user = document.getElementById("txtSenha").value;
 
-    var myHeaders = {
+    let LoginHeaders = {
         method: 'POST',
         headers: {
             //'Accept': 'application/json',
@@ -15,14 +15,29 @@
     }
 
     try {
-        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetByLogin', myHeaders);
-        const content = await rawResponse.json();
+        const rawResponse1 = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetByLogin', LoginHeaders);
+        const content = await rawResponse1.json();
         if (typeof content == "number") {
+            window.sessionStorage.setItem('User', content);
 
-            console.log("C: " + content);
-            if (content != 0) {
-                window.sessionStorage.setItem('User', content);
-                location.href = "./index.html";
+            var TypeHeaders = {
+                method: 'POST',
+                headers: {
+                    //'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify(content)
+            }
+            const rawResponse2 = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetById', TypeHeaders);
+            const content2 = await rawResponse2.json();
+            if (content2 != null) {
+                if (content2.tipo = 1) {
+                    location.href = "./index.html";
+                }
+                if (content2.tipo = 1) {
+                    location.href = "./administrador.html";
+                }
             }
         }
         else {

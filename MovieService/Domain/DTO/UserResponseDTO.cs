@@ -7,6 +7,7 @@ namespace MovieService.Domain.DTO
 {
     public class UserResponseDTO
     {
+        public int cd_aval { get; set; }
         public int valor { get; set; }
 
         public string item { get; set; }
