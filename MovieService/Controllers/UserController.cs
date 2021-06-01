@@ -54,6 +54,55 @@ namespace MovieService.Controllers
             }
         }
 
+        [ActionName("GetByUsername")]
+        [HttpPost]
+        public async Task<IActionResult> GetByUsername([FromBody] string requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+                    tbl_0001_user Cliente = await db.tbl_0001_user.Where(i => i.email_user == requestBody).FirstOrDefaultAsync();
+
+                    return Ok(Cliente.cd_user);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+        
+        [ActionName("GetMostConected")]
+        [HttpPost]
+        public async Task<IActionResult> GetMostConected()
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+                    int max = 0;
+                    string user_max = "";
+                    List<tbl_0001_user> Usuarios = await db.tbl_0001_user.Where(i => i.tipo == 1).ToListAsync();
+
+                    foreach(tbl_0001_user user in Usuarios)
+                    {
+                        List<tbl_0005_amizade> amizades = await db.tbl_0005_amizade.Where(i => (i.solicitante_amizade == user.cd_user || i.recebidor_amizade == user.cd_user) && i.data_amizade > DateTime.Now.AddMonths(-1) && i.status_amizade == 1).ToListAsync();
+                        if (max < amizades.Count()){
+                            max = amizades.Count();
+                            user_max = user.nm_user;
+                        }
+                    }
+
+                    return Ok(user_max);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+        
         [ActionName("InsertClie")]
         [HttpPost]
         public async Task<IActionResult> InsertClie([FromBody] tbl_0001_user requestBody)

@@ -22,16 +22,20 @@
             "</div>" +
         "</div>";
     document.getElementById('form-content').innerHTML = formPadrao;
+    console.log(input.value);
     switch (input.value) {
-        case 'Filme':
+        case "1":
+            console.log(1);
             document.getElementById('txt2').placeholder = "Diretor";
             document.getElementById('txt3').placeholder = "Elenco";
             break;
-        case 'Livro':
+        case "2":
+            console.log(2);
             document.getElementById('txt2').placeholder = "Autor";
             document.getElementById('txt3').placeholder = "Editora";
             break;
-        case 'Serie':
+        case "3":
+            console.log(3);
             document.getElementById('txt2').placeholder = "Diretor";
             document.getElementById('txt3').placeholder = "Elenco";
             document.getElementById('form-content').innerHTML = document.getElementById('form-content').innerHTML +

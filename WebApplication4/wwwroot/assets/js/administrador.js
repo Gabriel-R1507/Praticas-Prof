@@ -84,6 +84,31 @@ addLoadEvent(async function () {
     }
 });
 
+//usuario mais conectado do ultimo mes
+addLoadEvent(async function () {
+    let myHeaders = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify()
+    }
+    try {
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetMostConected', myHeaders);
+        const content = await rawResponse.json();
+        if (content != null) {
+            document.getElementById("most-conected").innerHTML += "<br>" + content;
+        }
+        else {
+            console.log("Erro ao pegar itens");
+        }
+    }
+    catch (ex) {
+        console.log("Erro ao pegar itens");
+    }
+});
+
 var aceitar_Item_Exemple =
     "<div class=\"list-aprov-unit\">"+
         "<div class=\"item-rows\">"+
@@ -115,8 +140,6 @@ function MontarAceite(item) {
     aceitar_Item = aceitar_Item.replaceAll("CodigoDoItem", item.cd_item);
     document.getElementById("list-aprov-content").innerHTML += aceitar_Item;
 }
-
-
 
 async function AceitarItem(cd) {
     let myHeaders = {

@@ -1,7 +1,12 @@
 ﻿var aval_exemple = "<div class=\"list-aval-unit\"><div class=\"col-1 list-aval-nota\">NotaDaAval</div><div class=\"col-9 list-aval-name\">NomeDoFilme</div><div class=\"col-2 list-aval-joinha\" Onclick=\"DarLike(CdDaAvaliacao)\"> <p><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i> JoinhasDaAval</p></div></div>";
+let amig_exemple = "<div class=\"list-amigos-unit\">"+
+                        "<div class=\"col-1 list-amigos-img\">"+
+                            "<img class=\"img-profile\" src=\"assets/img/user-image.jpg\"/>"+
+                        "</div>"+
+                        "<div class=\"col-11 list-amigos-name\"><a href=\"usuario.html?user=CodigoDoAmigo\">NomeDoAmigo</div>"+
+                    "</div>";
 
-
-//checa metodo get para alterar botao e chca se ja existe amizade
+//checa metodo get para alterar botao e checa se ja existe amizade
 addLoadEvent(async function () {
     let temp = window.location.href.split('=');
     let getAmizade = {};
@@ -43,9 +48,8 @@ addLoadEvent(async function () {
     getAvaliacoes(user);
 });
 
-
 async function getActualUserInfo(user) {
-    var myHeaders = {
+    let myHeaders = {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -54,11 +58,21 @@ async function getActualUserInfo(user) {
         body: JSON.stringify(user)
     }
     try {
-        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetById', myHeaders);
-        const content = await rawResponse.json();
+        const rawResponse1 = await fetch('https://moviehuntersapi.azurewebsites.net/Joinha/TotalPerUser', myHeaders);
+        const total = await rawResponse1.json();
+        const rawResponse2 = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetById', myHeaders);
+        const content = await rawResponse2.json();
         if (content != null) {
-            document.getElementById("user-nome").innerHTML = "<p>" + content.nm_user + "</p>";
+
+            document.getElementById("user-nome").innerHTML = "<p>" + content.nm_user + " - " + total +"<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></p>";
         }
+    }
+    catch (ex) {
+        console.log("E: " + ex);
+    }
+
+    try {
+        
     }
     catch (ex) {
         console.log("E: " + ex);
@@ -136,15 +150,12 @@ async function getAmizades(user) {
         const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Amizade/GetAmizadeUserPage', HeadersAmiz);
         const content = await rawResponse.json();
         if (content != null) {
-            console.log(content);
-            //for (let i = 0; i < content.lenght; i++) {
-            //    let aval = aval_exemple;
-            //    aval = aval.replace("NotaDaAval", content[i].valor);
-            //    aval = aval.replace("NomeDoFilme", content[i].titulo);
-            //    aval = aval.replace("JoinhasDaAval", content[i].Joinha.Lenght);
-                
-            //    document.getElementById("list-aval-content").innerHTML += aval;
-            //}
+            for (let i = 0; i < content.length; i++) {
+                let amig = amig_exemple;
+                amig = amig.replace("CodigoDoAmigo", content[i].cd_amigo);
+                amig = amig.replace("NomeDoAmigo", content[i].nm_amigo);
+                document.getElementById("list-amigos-content").innerHTML += amig;
+            }
         }
         else {
             console.log("E: " + ex);
@@ -211,9 +222,10 @@ async function getAmigosEmComum() {
         body: JSON.stringify(getAmizade)
     }
     try {
-        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Amizade/GetAmizade', HeadersAmiz);
+        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetComum', HeadersAmiz);
         const content = await rawResponse.json();
         if (content != null) {
+            console.log(content);
             document.getElementById("list-amigos-titulo").innerHTML += "( " + content + " Em comum )";
         }
     }

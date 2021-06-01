@@ -26,7 +26,7 @@ addLoadEvent(async function () {
         if (content != null) {
             for (let i = 0; i < content.length; i++) {
                 let notific_actual = notification_example;
-                notific_actual = notific_actual.replace("nomeDoUsuario", content[i].solicitante_amizade);
+                notific_actual = notific_actual.replace("nomeDoUsuario", content[i].nm_usuario);
                 notific_actual = notific_actual.replaceAll("CodigoDaAmizade", content[i].cd_amizade);
 
                 document.getElementById("notification-list").innerHTML += notific_actual;

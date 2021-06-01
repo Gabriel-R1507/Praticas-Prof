@@ -71,3 +71,18 @@ input{
             height: 100%;
             text-decoration: none;
         }
+
+.error-cad {
+    border: 2px solid red;
+    background-color: pink;
+    border-radius: 3px;
+    text-align: center;
+    color: red;
+}
+.succes-cad {
+    border: 2px solid green;
+    background-color: lightgreen;
+    border-radius: 3px;
+    text-align: center;
+    color: green;
+}

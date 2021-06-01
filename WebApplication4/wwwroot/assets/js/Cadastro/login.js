@@ -1,6 +1,5 @@
 ﻿async function Entrar() {
     var dadosLog = {};
-    console.log(document.getElementById("divResponse").innerHTML);
     dadosLog.email_user = document.getElementById("txtUser").value;
     dadosLog.senha_user = document.getElementById("txtSenha").value;
 
@@ -32,16 +31,17 @@
             const rawResponse2 = await fetch('https://moviehuntersapi.azurewebsites.net/User/GetById', TypeHeaders);
             const content2 = await rawResponse2.json();
             if (content2 != null) {
-                if (content2.tipo = 1) {
+
+                if (content2.tipo == 1) {
                     location.href = "./index.html";
                 }
-                if (content2.tipo = 1) {
+                if (content2.tipo == 2) {
                     location.href = "./administrador.html";
                 }
             }
         }
         else {
-            document.getElementById("divResponse").innerHTML = "Cadastro não existente";
+            document.getElementById("divResponse").innerHTML = "<div class=\"login-error\"> Cadastro não existente</div>";
         }
     }
     catch (ex) {

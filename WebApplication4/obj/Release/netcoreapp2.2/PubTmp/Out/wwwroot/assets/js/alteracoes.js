@@ -31,30 +31,42 @@ async function Salvar() {
     dadosClie.dt_nasc = document.getElementById("txtNascimento").value;
     dadosClie.estd_user = document.getElementById("slcEstado").value;
     dadosClie.cidd_user = document.getElementById("txtCidade").value;
+    if (DadosValidos(dadosClie)) {
+        let myHeaders = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dadosClie)
+        }
 
-    var myHeaders = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dadosClie)
-    }
+        try {
+            const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/User/UpdateClie', myHeaders);
+            const content = await rawResponse.json();
 
-    try {
-        const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/User/UpdateClie', myHeaders);
-        const content = await rawResponse.json();
+            console.log("C: " + content);
+            if (content != null) {
+                if (content == JSON.parse(window.sessionStorage.getItem('User'))) {
 
-        console.log("C: " + content);
-        if (content != null) {
-            if (content == JSON.parse(window.sessionStorage.getItem('User'))) {
-
-                location.href = "./usuario.html";
+                    location.href = "./usuario.html";
+                }
             }
         }
+        catch (ex) {
+            document.getElementById("divResponse").innerHTML = "<div class=\"login-error\">Erro ao alterar</div>";
+            console.log("E: " + ex);
+        }
     }
-    catch (ex) {
-        document.getElementById("divResponse").InnerText = "Erro ao se cadastrar"
-        console.log("E: " + ex);
+    else {
+        document.getElementById("divResponse").innerHTML = "<div class=\"login-error\">Erro ao alterar</div>";
     }
+}
+
+
+function DadosValidos(dados){
+    if (dados.nm_user == "" || dados.dt_nasc == "" || dados.estd_user == "" || dados.cidd_user == "") {
+        return false;
+    }
+    return true;
 }

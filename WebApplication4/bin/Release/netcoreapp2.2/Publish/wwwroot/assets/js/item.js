@@ -28,7 +28,7 @@ addLoadEvent(async function () {
             const content = await rawResponse.json();
             if (content != null) {
                 document.getElementById("item-nome").innerHTML = "<p>" + content.titulo_item + "</p>";
-                desc = content.descricao_item.split("&#13;&#10;");
+                desc = content.descricao_item.split("<br>");
                 for (i = 0; i < desc.length; i++) {
                     document.getElementById("item-desc").value += desc[i];
                     document.getElementById("item-desc").value += "\n";
@@ -129,7 +129,7 @@ async function Avaliar() {
     aval.item = temp[1];
     aval.valor = document.getElementById("points").value;
     aval.usuario = window.sessionStorage.getItem('User');
-    aval.comentario = document.getElementById("comment").value;
+    aval.comentario = document.getElementById("item-comment").value;
 
     let myHeaders = {
         method: 'POST',

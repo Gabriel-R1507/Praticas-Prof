@@ -49,7 +49,7 @@ namespace MovieService.Controllers
             {
                 using (SGCContext db = new SGCContext())
                 {
-                    tbl_0005_amizade Amizade = await db.tbl_0005_amizade.Where(i => (i.solicitante_amizade == requestBody.user1 && i.recebidor_amizade == requestBody.user2) || (i.solicitante_amizade == requestBody.user2 && i.recebidor_amizade == requestBody.user1)).FirstOrDefaultAsync();
+                    tbl_0005_amizade Amizade = await db.tbl_0005_amizade.Where(i => ( (i.solicitante_amizade == requestBody.user1 && i.recebidor_amizade == requestBody.user2) || (i.solicitante_amizade == requestBody.user2 && i.recebidor_amizade == requestBody.user1) ) && i.status_amizade == 1 ).FirstOrDefaultAsync();
                     if (Amizade != null)
                     {
                         return Ok(Amizade);
@@ -191,8 +191,10 @@ namespace MovieService.Controllers
                     List<tbl_0005_amizade> Amizades = await db.tbl_0005_amizade.Where(i => i.status_amizade == 1).ToListAsync();
 
                     int qtdamiz = Amizades.Count() * 2;
+                    int qtduser = Usuarios.Count();
 
-                    float media = qtdamiz / Usuarios.Count();
+                    //var media = (qtdamiz)/qtduser;
+                    float media = qtdamiz / float.Parse(Usuarios.Count() + "");
 
                     return Ok(media);
                 }
@@ -202,5 +204,28 @@ namespace MovieService.Controllers
                 return StatusCode(500, ex);
             }
         }
+
+
+        [ActionName("DeleteAmizade")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteAmizade([FromBody] AmizadeDto requestBody)
+        {
+            try
+            {
+                using (SGCContext db = new SGCContext())
+                {
+                    tbl_0005_amizade Amizade = await db.tbl_0005_amizade.Where(i => (i.solicitante_amizade == requestBody.user1 && i.recebidor_amizade == requestBody.user2) || (i.solicitante_amizade == requestBody.user2 && i.recebidor_amizade == requestBody.user1)).FirstOrDefaultAsync();
+
+                    db.Entry(Amizade).State = EntityState.Deleted;
+                    db.SaveChanges();
+                    return Ok(0);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
     }
 }

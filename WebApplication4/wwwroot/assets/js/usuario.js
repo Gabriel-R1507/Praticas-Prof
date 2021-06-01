@@ -6,7 +6,7 @@ let amig_exemple = "<div class=\"list-amigos-unit\">"+
                         "<div class=\"col-11 list-amigos-name\"><a href=\"usuario.html?user=CodigoDoAmigo\">NomeDoAmigo</div>"+
                     "</div>";
 
-//checa metodo get para alterar botao e chca se ja existe amizade
+//checa metodo get para alterar botao e checa se ja existe amizade
 addLoadEvent(async function () {
     let temp = window.location.href.split('=');
     let getAmizade = {};
@@ -125,7 +125,7 @@ async function DesfazerAmizade() {
     try {
         const rawResponse = await fetch('https://moviehuntersapi.azurewebsites.net/Amizade/DeleteAmizade', myHeaders);
         const content = await rawResponse.json();
-        if (content != null) {
+        if (typeof content == "number" && content == 0) {
             location.href = location.href;
         }
         else {

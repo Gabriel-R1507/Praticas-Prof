@@ -41,10 +41,11 @@
         text-decoration: none
     }
 .btn-amizade {
-    background-color:rebeccapurple;
+    background-color: #222f39;
     padding: 10px;
     cursor: pointer;
     text-align: center;
+    color: white;
     min-width: max-content;
 }
 #list-amigos, #list-aval {

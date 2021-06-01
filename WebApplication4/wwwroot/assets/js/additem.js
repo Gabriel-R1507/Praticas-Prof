@@ -22,16 +22,20 @@
             "</div>" +
         "</div>";
     document.getElementById('form-content').innerHTML = formPadrao;
+    console.log(input.value);
     switch (input.value) {
-        case 'Filme':
+        case "1":
+            console.log(1);
             document.getElementById('txt2').placeholder = "Diretor";
             document.getElementById('txt3').placeholder = "Elenco";
             break;
-        case 'Livro':
+        case "2":
+            console.log(2);
             document.getElementById('txt2').placeholder = "Autor";
             document.getElementById('txt3').placeholder = "Editora";
             break;
-        case 'Serie':
+        case "3":
+            console.log(3);
             document.getElementById('txt2').placeholder = "Diretor";
             document.getElementById('txt3').placeholder = "Elenco";
             document.getElementById('form-content').innerHTML = document.getElementById('form-content').innerHTML +
@@ -91,14 +95,15 @@ async function CadastrarItem() {
             console.log("C: " + content);
             if (typeof content == "number") {
                 document.getElementById("divResponse").innerHTML = "Item cadastrado com sucesso! (aguardando aprovação de um administrador)";
+                document.getElementById("divResponse").innerHTML = "<div class=\"succes-cad\">Item cadastrado com sucesso!<br>(aguardando aprovação de um administrador)</div>";
             }
         }
         else {
-            document.getElementById("divResponse").innerHTML = "Erro ao cadastrar Item";
+            document.getElementById("divResponse").innerHTML = "<div class=\"error-cad\">Erro ao cadastrar Item</div>";
         }
     }
     catch (ex) {
         console.log("E: " + ex);
-        document.getElementById("divResponse").innerHTML = "Erro ao cadastrar Item";
+        document.getElementById("divResponse").innerHTML = "<div class=\"error-cad\">Erro ao cadastrar Item</div>";
     }
 }
