@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\WebApplication4\\WebApplication4.csproj": {}
+    "D:\\Projetos\\Pessoal\\Praticas-Prof\\WebApplication4\\WebApplication4.csproj": {}
   },
   "projects": {
-    "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\WebApplication4\\WebApplication4.csproj": {
+    "D:\\Projetos\\Pessoal\\Praticas-Prof\\WebApplication4\\WebApplication4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\WebApplication4\\WebApplication4.csproj",
+        "projectUniqueName": "D:\\Projetos\\Pessoal\\Praticas-Prof\\WebApplication4\\WebApplication4.csproj",
         "projectName": "WebApplication4",
-        "projectPath": "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\WebApplication4\\WebApplication4.csproj",
-        "packagesPath": "C:\\Users\\gdlmg\\.nuget\\packages\\",
-        "outputPath": "C:\\_Gabriel\\Mack\\5_semestre\\Praticas_prof\\Praticas-Prof\\WebApplication4\\obj\\",
+        "projectPath": "D:\\Projetos\\Pessoal\\Praticas-Prof\\WebApplication4\\WebApplication4.csproj",
+        "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
+        "outputPath": "D:\\Projetos\\Pessoal\\Praticas-Prof\\WebApplication4\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\gdlmg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,6 +29,7 @@
         },
         "frameworks": {
           "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
             "projectReferences": {}
           }
         },
@@ -40,6 +41,7 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
           "dependencies": {
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
@@ -69,7 +71,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
